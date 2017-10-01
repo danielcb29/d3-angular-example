@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "deploy": "ngh --message='D3 Angular example deploy'",
-    "build-prod": "ng build --env=prod",
+    "build-prod": "ng build --env=prod --bh ./ ",
     "publish-feature": "npm version patch && npm run build-prod && npm run deploy",
     "publish-major": "npm version major && npm run build-prod && npm run deploy"
   },
