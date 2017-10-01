@@ -1,6 +1,6 @@
 {
   "name": "angular-d3-example",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -13,7 +13,6 @@
     "build-prod": "ng build --prod",
     "publish-feature": "npm version patch && npm run build-prod && npm run deploy",
     "publish-major": "npm version major && npm run build-prod && npm run deploy"
-    
   },
   "private": true,
   "dependencies": {
