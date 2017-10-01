@@ -11,27 +11,51 @@ export class AppComponent implements OnInit {
 
     svgData = [
         {
-            height: 100,
-            width: 100,
+            height: 300,
+            width: 500,
         }
     ];
 
     cirlceData = [{
-        cx: 50,
-        cy: 50,
-        r: 40,
+        cx: 100,
+        cy: 150,
+        r: 50,
         stroke: 'black',
-        strokeWidth: 3,
-        fill: 'green'
+        strokeWidth: 1,
+        fill: '#f9dbe0'
+    },
+    {
+        cx: 250,
+        cy: 150,
+        r: 50,
+        stroke: 'black',
+        strokeWidth: 1,
+        fill: '#d1efc9'
     }];
 
-    svg = null;
+    svgCircle = null;
 
     constructor() {
     }
 
+    buildLabel(element, text) {
+        element.append('h1')
+            .text(text)
+            .style('font-family', 'fantasy');
+    }
+
+    circleLabel() {
+        const circleLabel = d3.select('#circle-label');
+        this.buildLabel(circleLabel, 'Put a SVG Circle here! :)');
+    }
+
+    pieLabel() {
+        const pieLable = d3.select('#pie-label');
+        this.buildLabel(pieLable, 'Put a d3 Pie here! :)')
+    }
+
     initSVG() {
-        this.svg = d3.select('.main')
+        this.svgCircle = d3.select('#circle-example')
             .selectAll('svg')
             .data(this.svgData)
             .enter()
@@ -41,7 +65,7 @@ export class AppComponent implements OnInit {
     }
 
     addCircle() {
-        this.svg
+        this.svgCircle
             .selectAll('svg')
             .data(this.cirlceData)
             .enter()
@@ -55,6 +79,10 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit() {
+        // Labels
+        this.circleLabel();
+        this.pieLabel();
+        // Examples
         this.initSVG();
         this.addCircle();
     }
