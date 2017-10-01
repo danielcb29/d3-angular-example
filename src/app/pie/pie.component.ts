@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
+import data from '../data';
+import * as d3 from 'd3';
 
 @Component({
-  selector: 'app-pie',
-  templateUrl: './pie.component.html',
-  styleUrls: ['./pie.component.css']
+    selector: 'app-pie',
+    templateUrl: './pie.component.html',
+    styleUrls: ['./pie.component.css']
 })
-export class PieComponent implements OnInit {
+export class PieComponent implements AfterViewInit {
 
-  constructor() { }
+    labelMessage = 'Put a d3 Pie here! :)';
+    labelId = 'pie-label';
 
-  ngOnInit() {
-  }
+    pieId = 'pie-example';
+
+    constructor() { }
+
+    ngAfterViewInit() {
+    }
 
 }
