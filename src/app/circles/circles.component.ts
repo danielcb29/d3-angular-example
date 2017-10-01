@@ -21,27 +21,11 @@ export class CirclesComponent implements AfterViewInit {
     constructor() { }
 
     initSVG() {
-        this.svg = d3.select(`#${this.circlesId}`)
-            .selectAll('svg')
-            .data(this.svgData)
-            .enter()
-            .append('svg')
-            .attr('height', d => d.height)
-            .attr('width', d => d.width);
+        // TODO
     }
 
     addCircles() {
-        this.svg
-            .selectAll('svg')
-            .data(this.cirlcesData)
-            .enter()
-            .append('circle')
-            .attr('cx', d => d.cx)
-            .attr('cy', d => d.cy)
-            .attr('r', d => d.r)
-            .attr('stroke', d => d.stroke)
-            .attr('stroke-width', d => d.strokeWidth)
-            .attr('fill', d => d.fill);
+        // TODO
     }
 
     ngAfterViewInit() {
