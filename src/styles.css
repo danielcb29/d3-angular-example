@@ -2,3 +2,8 @@
 body {
     background-color: #e6ecf7;
 }
+
+.example {
+    display: inline-block;
+    padding: 20px;
+}

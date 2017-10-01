@@ -5,7 +5,7 @@ export default {
             width: 500,
         }
     ],
-    cirlceData: [{
+    cirlcesData: [{
         cx: 100,
         cy: 150,
         r: 50,
