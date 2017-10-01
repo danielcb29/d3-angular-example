@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "ngh --message='Daniel Page deploy :smile:' --branch=master",
+    "deploy": "ngh --message='D3 Angular example deploy'",
     "build-prod": "ng build --env=prod",
     "publish-feature": "npm version patch && npm run build-prod && npm run deploy",
     "publish-major": "npm version major && npm run build-prod && npm run deploy"
