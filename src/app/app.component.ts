@@ -17,22 +17,6 @@ export class AppComponent implements OnInit {
     constructor() {
     }
 
-    buildLabel(element, text) {
-        element.append('h1')
-            .text(text)
-            .style('font-family', 'fantasy');
-    }
-
-    circleLabel() {
-        const circleLabel = d3.select('#circle-label');
-        this.buildLabel(circleLabel, 'Put a SVG Circle here! :)');
-    }
-
-    pieLabel() {
-        const pieLable = d3.select('#pie-label');
-        this.buildLabel(pieLable, 'Put a d3 Pie here! :)')
-    }
-
     initSVG() {
         this.svgCircle = d3.select('#circle-example')
             .selectAll('svg')
@@ -58,10 +42,6 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit() {
-        // Labels
-        this.circleLabel();
-        this.pieLabel();
-        // Examples
         this.initSVG();
         this.addCircle();
     }
