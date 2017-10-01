@@ -8,7 +8,12 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy": "ngh --message='Daniel Page deploy :smile:' --branch=master",
+    "build-prod": "ng build --prod",
+    "publish-feature": "npm version patch && npm run build-prod && npm run deploy",
+    "publish-major": "npm version major && npm run build-prod && npm run deploy"
+    
   },
   "private": true,
   "dependencies": {
@@ -33,6 +38,7 @@
     "@angular/language-service": "^4.0.0",
     "@types/jasmine": "2.5.45",
     "@types/node": "~6.0.60",
+    "angular-cli-ghpages": "^0.5.1",
     "codelyzer": "~3.0.1",
     "jasmine-core": "~2.6.2",
     "jasmine-spec-reporter": "~4.1.0",
