@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import * as d3 from 'd3';
+import data from './data';
 
 @Component({
     selector: 'app-root',
@@ -9,30 +10,8 @@ import * as d3 from 'd3';
 })
 export class AppComponent implements OnInit {
 
-    svgData = [
-        {
-            height: 300,
-            width: 500,
-        }
-    ];
-
-    cirlceData = [{
-        cx: 100,
-        cy: 150,
-        r: 50,
-        stroke: 'black',
-        strokeWidth: 1,
-        fill: '#f9dbe0'
-    },
-    {
-        cx: 250,
-        cy: 150,
-        r: 50,
-        stroke: 'black',
-        strokeWidth: 1,
-        fill: '#d1efc9'
-    }];
-
+    svgData = data.svgData;
+    cirlceData = data.cirlceData;
     svgCircle = null;
 
     constructor() {
