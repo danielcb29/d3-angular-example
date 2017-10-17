@@ -175,7 +175,7 @@ var CirclesComponent = (function () {
         this.cirlcesData = __WEBPACK_IMPORTED_MODULE_1__data__["a" /* default */].cirlcesData;
     }
     CirclesComponent.prototype.initSVG = function () {
-        this.svg = __WEBPACK_IMPORTED_MODULE_2_d3__["a" /* select */]("#" + this.circlesId)
+        this.svg = __WEBPACK_IMPORTED_MODULE_2_d3__["b" /* select */]("#" + this.circlesId)
             .selectAll('svg')
             .data(this.svgData)
             .enter()
@@ -241,7 +241,14 @@ CirclesComponent = __decorate([
             stroke: 'black',
             strokeWidth: 1,
             fill: '#d1efc9' // Nice green
-        }]
+        }],
+    pieData: [
+        { age: '<20', population: '2704659' },
+        { age: '20-30', population: '14106543' },
+        { age: '30-40', population: '2159981' },
+        { age: '40-50', population: '3853788' },
+        { age: '>50', population: '4499890' },
+    ]
 });
 //# sourceMappingURL=data.js.map
 
@@ -299,7 +306,7 @@ var LabelComponent = (function () {
             .style('font-family', 'fantasy');
     };
     LabelComponent.prototype.buildElement = function () {
-        var element = __WEBPACK_IMPORTED_MODULE_1_d3__["a" /* select */]("#" + this.id);
+        var element = __WEBPACK_IMPORTED_MODULE_1_d3__["b" /* select */]("#" + this.id);
         this.buildLabel(element, this.message);
     };
     LabelComponent.prototype.ngAfterViewInit = function () {
@@ -336,7 +343,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "\n", ""]);
 
 // exports
 
@@ -358,6 +365,8 @@ module.exports = "<div id=\"pie-container\" class=\"example\">\n    <app-label [
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__data__ = __webpack_require__("../../../../../src/app/data.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_d3__ = __webpack_require__("../../../../d3/index.js");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PieComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -369,13 +378,59 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var PieComponent = (function () {
     function PieComponent() {
         this.labelMessage = 'Put a d3 Pie here! :)';
         this.labelId = 'pie-label';
         this.pieId = 'pie-example';
+        this.svgData = __WEBPACK_IMPORTED_MODULE_1__data__["a" /* default */].svgData;
+        this.pieData = __WEBPACK_IMPORTED_MODULE_1__data__["a" /* default */].pieData;
+        this.svg = null;
+        this.pieGroup = null;
+        this.pie = null;
+        this.pieArc = null;
+        this.color = __WEBPACK_IMPORTED_MODULE_2_d3__["a" /* scaleOrdinal */](['#98abc5', '#8a89a6', '#7b6888', '#6b486b', '#a05d56']);
     }
+    PieComponent.prototype.initSVG = function () {
+        this.svg = __WEBPACK_IMPORTED_MODULE_2_d3__["b" /* select */]("#" + this.pieId)
+            .selectAll('svg')
+            .data(this.svgData)
+            .enter()
+            .append('svg')
+            .attr('height', function (d) { return d.height; })
+            .attr('width', function (d) { return d.width; });
+    };
+    PieComponent.prototype.initPieElements = function () {
+        var radius = Math.min(this.svg.attr('width'), this.svg.attr('height')) / 2;
+        this.pieGroup = this.svg
+            .append('g')
+            .attr('transform', function (d) { return "translate(" + d.width / 2 + ", " + d.height / 2 + ")"; });
+        this.pie = __WEBPACK_IMPORTED_MODULE_2_d3__["c" /* pie */]()
+            .sort(null)
+            .value(function (d) { return d.population; });
+        this.pieArc = __WEBPACK_IMPORTED_MODULE_2_d3__["d" /* arc */]()
+            .outerRadius(radius)
+            .innerRadius(0);
+    };
+    PieComponent.prototype.buildPie = function () {
+        var _this = this;
+        var pieSlice = this.pieGroup.selectAll('.arc')
+            .data(this.pie(this.pieData))
+            .enter().append('g')
+            .attr('class', 'arc');
+        pieSlice.append('path')
+            .attr('d', this.pieArc)
+            .attr('fill', function (d) { return _this.color(d.data.age); });
+        pieSlice.append('text')
+            .attr('transform', function (d) { return "translate(" + _this.pieArc.centroid(d) + ")"; })
+            .text(function (d) { return d.data.age; });
+    };
     PieComponent.prototype.ngAfterViewInit = function () {
+        this.initSVG();
+        this.initPieElements();
+        this.buildPie();
     };
     return PieComponent;
 }());
