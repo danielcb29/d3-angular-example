@@ -26,45 +26,15 @@ export class PieComponent implements AfterViewInit {
     constructor() { }
 
     initSVG() {
-        this.svg = d3.select(`#${this.pieId}`)
-            .selectAll('svg')
-            .data(this.svgData)
-            .enter()
-            .append('svg')
-            .attr('height', d => d.height)
-            .attr('width', d => d.width);
+        // Master
     }
 
     initPieElements() {
-        const radius = Math.min(this.svg.attr('width'), this.svg.attr('height')) / 2;
-
-        this.pieGroup = this.svg
-            .append('g')
-            .attr('transform', d => `translate(${d.width / 2}, ${d.height / 2})`);
-
-        this.pie = d3.pie()
-            .sort(null)
-            .value(d => d.population);
-
-        this.pieArc = d3.arc()
-            .outerRadius(radius)
-            .innerRadius(0);
+        // Master
     }
 
     buildPie() {
-
-        const pieSlice = this.pieGroup.selectAll('.arc')
-            .data(this.pie(this.pieData))
-            .enter().append('g')
-            .attr('class', 'arc');
-
-        pieSlice.append('path')
-            .attr('d', this.pieArc)
-            .attr('fill', d => this.color(d.data.age));
-
-        pieSlice.append('text')
-            .attr('transform', d => `translate(${this.pieArc.centroid(d)})`)
-            .text(d => d.data.age);
+        // Master
 
     }
 
