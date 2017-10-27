@@ -22,9 +22,7 @@ export class CirclesComponent implements AfterViewInit {
 
     initSVG() {
         this.svg = d3.select(`#${this.circlesId}`)
-            .selectAll('svg')
             .data(this.svgData)
-            .enter()
             .append('svg')
             .attr('height', d => d.height)
             .attr('width', d => d.width);
